@@ -1,0 +1,9 @@
+c:\users\cuyos_000\documents\visual studio 2013\Projects\CodeLight_ConsoleApp\CodeLight_ConsoleApp\bin\Debug\CodeLight_ConsoleApp.exe.config
+c:\users\cuyos_000\documents\visual studio 2013\Projects\CodeLight_ConsoleApp\CodeLight_ConsoleApp\bin\Debug\CodeLight_ConsoleApp.exe
+c:\users\cuyos_000\documents\visual studio 2013\Projects\CodeLight_ConsoleApp\CodeLight_ConsoleApp\bin\Debug\CodeLight_ConsoleApp.pdb
+c:\users\cuyos_000\documents\visual studio 2013\Projects\CodeLight_ConsoleApp\CodeLight_ConsoleApp\obj\Debug\CodeLight_ConsoleApp.csprojResolveAssemblyReference.cache
+c:\users\cuyos_000\documents\visual studio 2013\Projects\CodeLight_ConsoleApp\CodeLight_ConsoleApp\obj\Debug\CodeLight_ConsoleApp.exe
+c:\users\cuyos_000\documents\visual studio 2013\Projects\CodeLight_ConsoleApp\CodeLight_ConsoleApp\obj\Debug\CodeLight_ConsoleApp.pdb
+C:\Users\cuyos_000\Documents\GitHub\CodeLight_ConsoleApp\CodeLight_ConsoleApp\bin\Debug\CodeLight_ConsoleApp.exe.config
+C:\Users\cuyos_000\Documents\GitHub\CodeLight_ConsoleApp\CodeLight_ConsoleApp\obj\Debug\CodeLight_ConsoleApp.exe
+C:\Users\cuyos_000\Documents\GitHub\CodeLight_ConsoleApp\CodeLight_ConsoleApp\obj\Debug\CodeLight_ConsoleApp.pdb
