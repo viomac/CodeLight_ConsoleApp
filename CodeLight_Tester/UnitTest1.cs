@@ -9,6 +9,7 @@ namespace CodeLight_Tester
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
