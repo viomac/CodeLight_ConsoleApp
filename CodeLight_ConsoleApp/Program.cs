@@ -14,7 +14,7 @@ namespace CodeLight_ConsoleApp
         static void FileIndexer(string path) {
             string line;
             //foreach (string fl in filePaths) {
-            using (StreamReader sr = new StreamReader(path)){
+            using (var sr = new StreamReader(path)){
                 string[] words;
                 while ((line = sr.ReadLine()) != null){
                     words = line.Split(' ');
@@ -28,7 +28,7 @@ namespace CodeLight_ConsoleApp
 
         static string[] GetFiles(string[] directories) {
             var filePaths = new List<string>();
-            foreach (string p in directories)            {
+            foreach (string p in directories){
                 filePaths.AddRange(Directory.GetFiles(p, "*", SearchOption.AllDirectories));
             }
             return filePaths.ToArray();
@@ -36,15 +36,12 @@ namespace CodeLight_ConsoleApp
 
         static void Main(string[] args)
         {
-            //Create keywords set
-            var words = new string[]{"while","for","var","int","class","case"};
-            string[] words_array = { "while", "for", "var", "int", "class", "case" };
-            var keywords = new HashSet<string>(words_array);
-
-            //Get files from directories
             string path = @"TestFiles\Test1.txt";
             string[] paths = {@"TestFiles\Extra2",
                               @"TestFiles\Extra5"};
+
+            string[] words_array = { "while", "for", "var", "int", "class", "case" };
+            var keywords = new HashSet<string>(words_array);
 
             foreach (string fl in paths) { Console.WriteLine(fl); }
             string[] filePaths = GetFiles(paths);
@@ -53,14 +50,6 @@ namespace CodeLight_ConsoleApp
             foreach (string fl in filePaths) { Console.WriteLine(fl); }
 
             FileIndexer(path);
-            
-            /*string[] dirs = Directory.GetDirectories(path,"*");
-            Console.WriteLine("The number of directories is {0}.", dirs.Length);
-            foreach (string dir in dirs) {
-                Console.WriteLine(dir);
-            } */
-            
-            //var res = FileIndexer(path);
             Console.ReadLine();
 
         }
