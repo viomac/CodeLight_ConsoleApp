@@ -9,40 +9,77 @@ namespace CodeLight_ConsoleApp
 {
     public class WordMatch
     {
-        public string FilePath;
-        public int Line;
-        public int Column;
+        public string FilePath { get; private set; }
+        public int Line { get; set; }
+        public int Column { get; set; }
 
-        public WordMatch() { 
-            FilePath = null; 
-            Line = -1; 
-            Column = -1; 
+        public WordMatch()
+        {
+            FilePath = null;
+            Line = -1;
+            Column = -1;
         }
-        public WordMatch(string filePath, int line, int column) { 
-            FilePath = filePath; 
-            Line = line; 
-            Column = column; }
+        public WordMatch(string filePath)
+        {
+            FilePath = filePath;
+            Line = -1;
+            Column = -1;
+        }
+        public WordMatch(string filePath, int line, int column)
+        {
+            FilePath = filePath;
+            Line = line;
+            Column = column;
+        }
     }
+
 
     class Program
     {
         //static Dictionary<string,object> FileIndexer (string path);
         static void FileIndexer(string path)
         {
-            var dictionary = new Dictionary<string, WordMatch>();
+            string[] words_array = { "while", "for", "var", "int", "class", "case" };
+            var keywords = new HashSet<string>(words_array);
             string[] lines = System.IO.File.ReadAllLines(path);
-            string word;
-            int col = 0, separatorIndex;
+			var dictionary = new Dictionary<string, WordMatch>();
+            int numberOfLine = 1;
 
             foreach (string line in lines)
             {
-                for (int i = 0; i < line.Length; i++)
+                string word;
+                int lenghtWord;
+                int begin = 0, end = 0;
+                if (line.Length != 0)
                 {
-                    separatorIndex = line.IndexOf(' ');
-
+                    end = line.IndexOf(' ', begin);
+                    while (end != -1)
+                    {
+                        lenghtWord = end - begin;
+                        word = line.Substring(begin, end - begin);
+                        if (!words_array.Contains(word))
+                        {                           
+                            var wordMatch = new WordMatch(path);
+                            wordMatch.Line = numberOfLine;
+                            wordMatch.Column = begin+1;
+                            //dictionary.Add(word, wordMatch);
+							Console.WriteLine("Word: {0}, line: {1}, column: {2}", word, wordMatch.Line, wordMatch.Column);
+                        }
+                        begin = end + 1;
+                        end = line.IndexOf(' ', begin);
+                    }
+					lenghtWord = line.Length - begin;
+					word = line.Substring (begin, lenghtWord);
+					if (!words_array.Contains (word)) {
+						var wordMatch2 = new WordMatch (path);
+						wordMatch2.Line = numberOfLine;
+						wordMatch2.Column = begin + 1;
+						//dictionary.Add (word, wordMatch2);
+						Console.WriteLine ("Word: {0}, line: {1}, column: {2}", word, wordMatch2.Line, wordMatch2.Column);
+					}
                 }
+                numberOfLine++;
             }
-
         }
 
         static string[] GetFiles(string[] directories)
@@ -55,45 +92,12 @@ namespace CodeLight_ConsoleApp
             return filePaths.ToArray();
         }
 
+
         static void Main(string[] args)
         {
-            string line = "Hola mundo mundo";
-            string word;
-            int begin = 0, end = 0;
-
-            end = line.IndexOf(' ',begin);
-            Console.WriteLine(end);
-
-            while( begin <= line.Length){
-                end = line.IndexOf(' ',begin);
-                word = line.Substring(begin,end-1);
-                Console.WriteLine(word);
-                begin = end + 1;
-            }
-
-
-
-
-
-            var datos = new WordMatch("Path", 5, 67);
-            var datos2 = new WordMatch();
-            datos2.FilePath = "Ruta2";
-            datos2.Line = 27;
-            datos2.Column = 56;
-            var dictionary = new Dictionary<string, WordMatch>();
-
-            dictionary.Add("word1", datos);
-            dictionary.Add("word2", datos2);
-
-            foreach (KeyValuePair<string, WordMatch> pair in dictionary)
-            {
-                Console.WriteLine("Palabra:{0}, Ruta:{1}, renglon: {2}, columna: {3}", pair.Key, pair.Value.FilePath, pair.Value.Line, pair.Value.Column);
-            }
+			
 
             string path = @"..\..\..\TestFiles\Test1.txt";
-            string[] words_array = { "while", "for", "var", "int", "class", "case" };
-            var keywords = new HashSet<string>(words_array);
-
             FileIndexer(path);
 
             Console.ReadLine();
