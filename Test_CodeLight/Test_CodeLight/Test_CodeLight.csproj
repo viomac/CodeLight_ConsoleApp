@@ -43,4 +43,13 @@
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CodeLight_ConsoleApp\CodeLight_ConsoleApp.csproj">
+      <Project>{4ebb5c89-8ffb-441b-9d4d-01e141c04e0c}</Project>
+      <Name>CodeLight_ConsoleApp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 Clásico: Hola mundo!!!
 
-más palabras
+más palabras while for
 
 bla bla bla
