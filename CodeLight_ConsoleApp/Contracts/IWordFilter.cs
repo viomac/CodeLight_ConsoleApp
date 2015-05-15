@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    public interface IDirectoryIndexer
+    public interface IWordFilter
     {
-        string[] GetFiles(string[] directories);
+        bool ShouldKeep(string word);
     }
-
 }

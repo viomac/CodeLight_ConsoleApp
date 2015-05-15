@@ -8,35 +8,30 @@ namespace Test_CodeLight
 	[TestFixture ()]
 	public class Test
 	{
-        IDirectoryIndexer directories;
         IFileIndexer fileindexer;
         
         [SetUp]
         public void Setup() {
-            this.directories = new DirectoryIndexer();
-            var filter = new WordFilter();
+            var filter = new keyWordsFilter();
             this.fileindexer = new FileIndexer(filter);
         }
 
-        [Test()]
-        public void Test_ClassDirectoryIndexer()
+        [Test]
+        public void ClassDirectoryIndexer()
         {
             string[] paths = { @"..\..\..\TestFiles\Extra2",
                                @"..\..\..\TestFiles\Extra5"};
-            string[] filesResult = this.directories.GetFiles(paths);
-            Assert.AreEqual(filesResult.Length, 5);
+            List<string> filesResult = FileSystemUtilities.GetFiles(paths);
+            Assert.AreEqual(filesResult.Count, 5);
         }
 
         [Test()]
-        public void Test_Filter() {
-            var filter = new WordFilter();
-            Assert.AreEqual(filter.ContainsWord("hola"), false);
-            Assert.AreEqual(filter.ContainsWord("while"), true);
+        public void Filter() {
+            var filter = new keyWordsFilter();
+            Assert.AreEqual(filter.ShouldKeep("hola"), true);
+            Assert.AreEqual(filter.ShouldKeep("while"), false);
         }
-
-
-
-
+        
 	}
 }
 

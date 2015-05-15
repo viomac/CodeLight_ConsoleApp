@@ -9,7 +9,7 @@ namespace CodeLight_ConsoleApp
     public class WordMatch
     {
         public string FilePath { get; private set; }
-        public int Line { get; set; }
+        public int Line { get; private set; }
         public int Column { get; set; }
 
         public WordMatch()

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    public interface IWordFilter
+    public interface IFileIndexer
     {
-        bool ContainsWord(string word);
+        IDictionary<string, List<WordMatch>> IndexDirectory(string[] directories);
     }
 }

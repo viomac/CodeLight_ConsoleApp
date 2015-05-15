@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    public class WordFilter : IWordFilter
+    public class keyWordsFilter : IWordFilter
     {
         static List<string> filter = new List<string> { "while", "for", "var", "int", "class", "case" };
-        
-        public bool ContainsWord(string word) {
-            return filter.Contains(word);
+        public bool ShouldKeep(string word) {
+            return !filter.Contains(word);
         }
     }
 }

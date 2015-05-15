@@ -10,4 +10,5 @@ Properties/
 *.exe
 *.o
 *.so
- 
+*.userprefs 
+*.suo
