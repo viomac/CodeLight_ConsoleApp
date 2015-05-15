@@ -8,44 +8,35 @@ namespace Test_CodeLight
 	[TestFixture ()]
 	public class Test
 	{
-        [Test ()]
-        public void Test_ClassDirectoryIndexer() {
-
-            string[] paths = {@"..\..\..\TestFiles\Extra2",
-                              @"..\..\..\TestFiles\Extra5"};
-            string[] files = {@"..\..\..\TestFiles\Extra2\Test4.txt",
-                              @"..\..\..\TestFiles\Extra2\Test5.txt",
-                              @"..\..\..\TestFiles\Extra5\Test7.txt",
-                              @"..\..\..\TestFiles\Extra5\Test8.txt",
-                              @"..\..\..\TestFiles\Extra5\Test9.txt",
-                              };
-
-            var directories = new CodeLight_ConsoleApp.ConcreteDirectoryIndexer();
-            string[] filesResult = directories.GetFiles(paths);
-            Assert.AreEqual(files, filesResult);
+        IDirectoryIndexer directories;
+        IFileIndexer fileindexer;
+        
+        [SetUp]
+        public void Setup() {
+            this.directories = new DirectoryIndexer();
+            var filter = new WordFilter();
+            this.fileindexer = new FileIndexer(filter);
         }
 
         [Test()]
-        public void Test_ListOfWordMatch() {
-
-            var dicionary = new Dictionary<string,List<WordMatch>>;
-
-            var item1 = new WordMatch("path1",3,4);
-            var item2 = new WordMatch("path2",5,24);
-            var item3 = new WordMatch("path3",18,56);
-            var listOfMatch = new List<WordMatch>();
-
-            listOfMatch.Add(item1);
-            listOfMatch.Add(item2);
-            listOfMatch.Add(item3);
-
-            string word = "hola";
-            
-            var AddMatchs = new CAddMatchToDictionary();
-
-            AddMatchs.AddMatch(word,listOfMatch);
- 
+        public void Test_ClassDirectoryIndexer()
+        {
+            string[] paths = { @"..\..\..\TestFiles\Extra2",
+                               @"..\..\..\TestFiles\Extra5"};
+            string[] filesResult = this.directories.GetFiles(paths);
+            Assert.AreEqual(filesResult.Length, 5);
         }
+
+        [Test()]
+        public void Test_Filter() {
+            var filter = new WordFilter();
+            Assert.AreEqual(filter.ContainsWord("hola"), false);
+            Assert.AreEqual(filter.ContainsWord("while"), true);
+        }
+
+
+
+
 	}
 }
 
