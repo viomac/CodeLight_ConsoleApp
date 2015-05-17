@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    static class FileIndexerUtilities
+    public static class FileIndexerUtilities
     {
         public static void AddMatch(string word, WordMatch match, ref Dictionary<string, List<WordMatch>> dictionary)
         {
