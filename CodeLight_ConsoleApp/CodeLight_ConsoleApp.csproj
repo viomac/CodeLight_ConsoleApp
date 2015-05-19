@@ -45,6 +45,7 @@
     <Compile Include="Classes\FileIndexer.cs" />
     <Compile Include="Classes\FileIndexerUtilities.cs" />
     <Compile Include="Classes\FileSystemUtilities.cs" />
+    <Compile Include="Classes\Match.cs" />
     <Compile Include="Contracts\IFileIndexer.cs" />
     <Compile Include="Contracts\ILookup.cs" />
     <Compile Include="Contracts\IWordFilter.cs" />
