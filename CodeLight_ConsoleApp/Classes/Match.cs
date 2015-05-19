@@ -22,6 +22,13 @@ namespace CodeLight_ConsoleApp
             Column = column;
         }
 
+        public override bool Equals(object obj)
+        {
+            Match other = obj as Match;
+            if (other == null)
+                return false;
+            return this.Line == other.Line && this.Column == other.Column;
+        }
     }
 }
 
