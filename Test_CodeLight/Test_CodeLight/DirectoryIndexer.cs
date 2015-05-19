@@ -6,13 +6,13 @@ using System.Collections.Generic;
 namespace Test_CodeLight
 {
 	[TestFixture ()]
-	public class Test
+	public class DirectoryIndexer
 	{
         IFileIndexer fileindexer;
         
         [SetUp]
         public void Setup() {
-            var filter = new keyWordsFilter();
+            var filter = new KeywordsFilter();
             this.fileindexer = new FileIndexer(filter);
         }
 
@@ -21,16 +21,9 @@ namespace Test_CodeLight
         {
             string[] paths = { @"..\..\..\TestFiles\Extra2",
                                @"..\..\..\TestFiles\Extra5"};
-            List<string> filesResult = FileSystemUtilities.GetFiles(paths);
+            List<string> filesResult = FileSystemUtilities.GetAllFiles(paths);
             Assert.AreEqual(filesResult.Count, 5);
-        }
-
-        [Test()]
-        public void Filter() {
-            var filter = new keyWordsFilter();
-            Assert.AreEqual(filter.ShouldKeep("hola"), true);
-            Assert.AreEqual(filter.ShouldKeep("while"), false);
-        }
+        }       
         
 	}
 }

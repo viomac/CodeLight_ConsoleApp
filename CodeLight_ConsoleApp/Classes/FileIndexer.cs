@@ -9,17 +9,17 @@ namespace CodeLight_ConsoleApp
 {
     public class FileIndexer : IFileIndexer
     {
-        IWordFilter filter;
+        IWordFilter wordFilter;
 
         public FileIndexer(IWordFilter wordFilter)
         {
-            this.filter = wordFilter;
+            this.wordFilter = wordFilter;
         }
         
-        public IDictionary<string, List<WordMatch>> IndexDirectory(string[] directories)
+        public IDictionary<string, List<WordMatch>> IndexDirectories(string[] directories)
         {
             var dictionary = new Dictionary<string, List<WordMatch>>();           
-            foreach (string path in FileSystemUtilities.GetFiles(directories))
+            foreach (string path in FileSystemUtilities.GetAllFiles(directories))
             {
                 IndexFile(path, ref dictionary);
             }
@@ -34,40 +34,23 @@ namespace CodeLight_ConsoleApp
 
         void IndexLines(string[] lines, string Path, ref Dictionary<string, List<WordMatch>> dictionary)
         {
-            int numberOfLine = 1;
+            int lineNumber = 1;
             foreach (string line in lines)
             {
-                IndexWords(line, numberOfLine, Path, ref dictionary);
-                numberOfLine++;
+                IndexLine(line, lineNumber, Path, ref dictionary);
+                lineNumber++;
             }
         }
 
-        internal void IndexWords(string line, int numberOfLine, string path, ref Dictionary<string, List<WordMatch>> dictionary)
+        internal void IndexLine(string line, int LineNumber, string path, ref Dictionary<string, List<WordMatch>> dictionary)
         {
-            string word;
-            int lenghtWord, begin = 0, end = 0, column;
-            WordMatch wordMatch;
-            end = line.IndexOf(' ', begin);
-            while (end != -1)
-            {
-                lenghtWord = end - begin;
-                word = line.Substring(begin, end - begin);
-                column = begin+1;
-                wordMatch = new WordMatch(path, numberOfLine, column);
-                if (this.filter.ShouldKeep(word))
+            Dictionary<string,int> words = FileIndexerUtilities.GetWords(line);            
+            foreach(var word in words){
+                if (wordFilter.ShouldKeep(word.Key))
                 {
-                    FileIndexerUtilities.AddMatch(word, wordMatch, ref dictionary);
+                    dictionary.AddItem(word.Key, new WordMatch(path, LineNumber, word.Value));
                 }
-                begin = end + 1;
-                end = line.IndexOf(' ', begin);
-            }
-            lenghtWord = line.Length - begin;
-            word = line.Substring(begin, lenghtWord);
-            column = begin + 1;
-            wordMatch = new WordMatch(path, numberOfLine, column);
-            if (this.filter.ShouldKeep(word))
-            {
-                FileIndexerUtilities.AddMatch(word, wordMatch, ref dictionary);
+                
             }
         }      
 

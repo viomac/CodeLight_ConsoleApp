@@ -50,8 +50,10 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Test.cs" />
-    <Compile Include="TestAddToDictionary.cs" />
+    <Compile Include="Filter.cs" />
+    <Compile Include="GetWordsByLine.cs" />
+    <Compile Include="DirectoryIndexer.cs" />
+    <Compile Include="AddToDictionary.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

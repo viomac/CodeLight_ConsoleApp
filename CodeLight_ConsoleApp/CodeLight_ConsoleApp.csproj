@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DictionaryExtensions.cs" />
     <Compile Include="Classes\FileIndexer.cs" />
     <Compile Include="Classes\FileIndexerUtilities.cs" />
     <Compile Include="Classes\FileSystemUtilities.cs" />

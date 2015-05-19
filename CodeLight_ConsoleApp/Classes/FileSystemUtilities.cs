@@ -9,7 +9,7 @@ namespace CodeLight_ConsoleApp
 {
     public static class FileSystemUtilities
     {
-        public static List<string> GetFiles(string[] directories) {
+        public static List<string> GetAllFiles(string[] directories) {
             var filePaths = new List<string>();
 
             foreach (string p in directories)

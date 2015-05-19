@@ -8,18 +8,20 @@ namespace CodeLight_ConsoleApp
 {
     public static class FileIndexerUtilities
     {
-        public static void AddMatch(string word, WordMatch match, ref Dictionary<string, List<WordMatch>> dictionary)
-        {
-            if (!dictionary.ContainsKey(word))
+
+        public static Dictionary<string, int> GetWords(string line) {
+            var words = new Dictionary<string, int>();
+            int begin = 0, end = 0;
+            end = line.IndexOf(' ', begin);
+            while (end != -1)
             {
-                var listOfMatch = new List<WordMatch>();
-                listOfMatch.Add(match);
-                dictionary.Add(word, listOfMatch);
+                words.Add(line.Substring(begin, end - begin), begin + 1);
+                begin = end + 1;
+                end = line.IndexOf(' ', begin);
             }
-            else
-            {
-                dictionary[word].Add(match);
-            }
+            end = line.Length;
+            words.Add(line.Substring(begin, end - begin), begin + 1);
+            return words;
         }
     }
 }
