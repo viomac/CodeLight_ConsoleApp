@@ -23,5 +23,24 @@ namespace CodeLight_ConsoleApp
             words.Add(line.Substring(begin, end - begin), begin + 1);
             return words;
         }
+
+        public static Dictionary<string,Dictionary<string,List<Match>>> DeletePath(string path, ref Dictionary<string,Dictionary<string,List<Match>>> dictionary )
+        {
+            var removeWords = new List<string>();
+            foreach (var wordMatch in dictionary)
+            {
+                wordMatch.Value.Remove(path);
+                if (wordMatch.Value.Count == 0)
+                    removeWords.Add(wordMatch.Key);
+                    //dictionary.Remove(wordMatch.Key);
+            }
+
+            foreach (var word in removeWords) 
+            {
+                dictionary.Remove(word);
+            }
+            return dictionary;
+        }
+
     }
 }
