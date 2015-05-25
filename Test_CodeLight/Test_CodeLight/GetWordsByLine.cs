@@ -11,30 +11,32 @@ namespace Test_CodeLight
     [TestFixture]
     public class GetWordsByLine
     {
-        Dictionary<string, int> words;
+        IGetWords words;
 
         [SetUp]
         public void Setup()
         {
-            var words = new Dictionary<string, int>();
+            words = new GetWords();
         }
-
+        
         [Test]
-        public void GetWords() {
-            words = FileIndexerUtilities.GetWords("Prueba en solo una linea");
-            Assert.That(words.Count, Is.EqualTo(5));
-            Assert.That(words.ContainsKey("en"));
-            Assert.That(words["linea"], Is.EqualTo(20));
-            Assert.That(words["en"], Is.EqualTo(8));
+        public void wordsByLine()
+        {
+            Dictionary<string, int> wordList = words.getWords("Separa una linea en palabras...");
+            Assert.AreEqual(wordList.Count, 5);
+            Assert.That(wordList.ContainsKey("linea"), Is.True);
+            Assert.That(wordList.ContainsKey("palabras..."), Is.True);
+            Assert.That(wordList["una"] ,Is.EqualTo(8));
+            Assert.That(wordList["en"], Is.EqualTo(18));
         }
-
+        
         [Test]
         public void EmptyLine() {
-            words = FileIndexerUtilities.GetWords("");
-            Assert.AreEqual(words.Count,1);
-            Assert.That(words.ContainsKey(""));
-            Assert.AreEqual(words[""], 1);
-        }
-    
+            Dictionary<string, int> wordList = words.getWords("");
+            Assert.AreEqual(wordList.Count,1);
+            Assert.That(wordList.ContainsKey(""));
+            Assert.AreEqual(wordList[""], 1);
+        } 
+
     }
 }
