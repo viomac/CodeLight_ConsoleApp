@@ -49,11 +49,13 @@
     <Compile Include="Contracts\IFileIndexer.cs" />
     <Compile Include="Contracts\ILookup.cs" />
     <Compile Include="Contracts\IWordFilter.cs" />
+    <Compile Include="Contracts\IWordDictionary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\Lookup.cs" />
     <Compile Include="Classes\WordFilter.cs" />
     <Compile Include="Classes\WordMatch.cs" />
+    <Compile Include="Classes\WordDictionary.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
