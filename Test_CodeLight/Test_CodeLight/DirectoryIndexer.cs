@@ -13,7 +13,7 @@ namespace Test_CodeLight
         [SetUp]
         public void Setup() {
             var filter = new KeywordsFilter();
-            this.fileindexer = new FileIndexer(filter);
+            //this.fileindexer = new FileIndexer(filter);
         }
 
         [Test]

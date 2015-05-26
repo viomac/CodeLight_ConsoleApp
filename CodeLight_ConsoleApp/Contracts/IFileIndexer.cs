@@ -8,6 +8,8 @@ namespace CodeLight_ConsoleApp
 {
     public interface IFileIndexer
     {
-        IDictionary<string, List<WordMatch>> IndexDirectories(string[] directories);
+        void indexFile(string path, ref IWordDictionary dictionary);
+        //void deleteFile();
+        //void updateFile();
     }
 }

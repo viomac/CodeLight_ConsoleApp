@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    interface ILookup
+    public interface IIndexer
     {
-        IList<WordMatch> SearchWord(string word);
+        void indexDirectories(List<string> directories);
+        IDictionary<string, List<Match>> lookUp(string word);        
     }
 }

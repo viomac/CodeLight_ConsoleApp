@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DictionaryMethods.cs" />
+    <Compile Include="FileIndexer.cs" />
     <Compile Include="FileWatcher.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="GetWordsByLine.cs" />
