@@ -8,7 +8,7 @@ namespace CodeLight_ConsoleApp
 {
     public interface IIndexer
     {
-        void indexDirectories(List<string> directories);
-        IDictionary<string, List<Match>> lookUp(string word);        
+        void IndexDirectories(List<string> directories);
+        IDictionary<string, List<Match>> LookUp(string word);        
     }
 }

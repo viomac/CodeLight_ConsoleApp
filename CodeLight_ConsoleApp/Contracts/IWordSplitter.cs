@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    public interface IGetWords
+    public interface IWordSplitter
     {
-       Dictionary<string, int> getWords(string line);
+       Dictionary<string, int> SplitIntoWords(string line);
     }
 }

@@ -6,31 +6,31 @@ using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    public class WordDictionary: IWordDictionary
+    public class WordDictionary : IWordDictionary
     {
         public Dictionary<string, Dictionary<string, List<Match>>> dictionary { get; private set; }
 
-        public WordDictionary() 
+        public WordDictionary()
         {
             dictionary = new Dictionary<string, Dictionary<string, List<Match>>>();
         }
 
-        public void addItem(string word, string path, Match match) 
+        public void AddOccurrence(string word, string path, Match match)
         {
-            if(!dictionary.ContainsKey(word))
+            if (!dictionary.ContainsKey(word))
                 dictionary.Add(word, new Dictionary<string, List<Match>>());
-            dictionary[word].AddItem(path,match);
+            dictionary[word].AddItem(path, match);
 
         }
 
-        public void removePath(string path)
+        public void RemoveMatchesInPath(string path)
         {
-            var removeWords = new List<string>();            
-            foreach (var wordMatch in dictionary)
+            var removeWords = new List<string>();
+            foreach (var wordEntry in dictionary)
             {
-                wordMatch.Value.Remove(path);
-                if (wordMatch.Value.Count == 0)
-                    removeWords.Add(wordMatch.Key);
+                wordEntry.Value.Remove(path);
+                if (wordEntry.Value.Count == 0)
+                    removeWords.Add(wordEntry.Key);
             }
             foreach (var word in removeWords)
             {
@@ -38,7 +38,7 @@ namespace CodeLight_ConsoleApp
             }
         }
 
-        public Dictionary<string, List<Match>> lookfor(string word) 
+        public Dictionary<string, List<Match>> Lookfor(string word)
         {
             return dictionary[word];
         }

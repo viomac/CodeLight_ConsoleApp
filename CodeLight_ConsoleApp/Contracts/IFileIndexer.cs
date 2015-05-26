@@ -8,7 +8,7 @@ namespace CodeLight_ConsoleApp
 {
     public interface IFileIndexer
     {
-        void indexFile(string path, ref IWordDictionary dictionary);
+        void IndexFile(string path, ref IWordDictionary dictionary);
         //void deleteFile();
         //void updateFile();
     }

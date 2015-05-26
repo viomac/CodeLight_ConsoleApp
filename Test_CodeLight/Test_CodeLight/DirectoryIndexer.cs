@@ -8,7 +8,7 @@ namespace Test_CodeLight
 	[TestFixture ()]
 	public class DirectoryIndexer
 	{
-        IFileIndexer fileindexer;
+        //IFileIndexer fileindexer;
         
         [SetUp]
         public void Setup() {

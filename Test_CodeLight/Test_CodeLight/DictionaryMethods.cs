@@ -16,14 +16,14 @@ namespace Test_CodeLight
         [SetUp]
         public void SetUp() {
             dict = new WordDictionary();
-            dict.addItem("word", "path", new Match(6, 8));
-            dict.addItem("word", "path2", new Match(6, 7));
-            dict.addItem("word", "path2", new Match(56, 23));
-            dict.addItem("word", "path2", new Match(34, 98));
+            dict.AddOccurrence("word", "path", new Match(6, 8));
+            dict.AddOccurrence("word", "path2", new Match(6, 7));
+            dict.AddOccurrence("word", "path2", new Match(56, 23));
+            dict.AddOccurrence("word", "path2", new Match(34, 98));
 
-            dict.addItem("word2", "path2", new Match(6, 7));
-            dict.addItem("word2", "path2", new Match(56, 23));
-            dict.addItem("word2", "path2", new Match(34, 98));
+            dict.AddOccurrence("word2", "path2", new Match(6, 7));
+            dict.AddOccurrence("word2", "path2", new Match(56, 23));
+            dict.AddOccurrence("word2", "path2", new Match(34, 98));
         }
 
         [Test]
@@ -33,10 +33,10 @@ namespace Test_CodeLight
             Assert.AreEqual(dict.dictionary["word2"].Count,1);
             Assert.AreEqual(dict.dictionary["word2"]["path2"].Count, 3);
 
-            dict.addItem("word3","path", new Match(1,2));
-            dict.addItem("word3", "path", new Match(12, 24));
-            dict.addItem("word3","path2", new Match(3,94));
-            dict.addItem("word3","path3", new Match(73,35));
+            dict.AddOccurrence("word3","path", new Match(1,2));
+            dict.AddOccurrence("word3", "path", new Match(12, 24));
+            dict.AddOccurrence("word3","path2", new Match(3,94));
+            dict.AddOccurrence("word3","path3", new Match(73,35));
 
             Assert.AreEqual(dict.dictionary.Count,3);
             Assert.AreEqual(dict.dictionary["word3"].Count,3);
@@ -45,14 +45,14 @@ namespace Test_CodeLight
 
         [Test]
         public void removeItems() {
-            dict.removePath("path2");
+            dict.RemoveMatchesInPath("path2");
             Assert.AreEqual(dict.dictionary.Count, 1);
             Assert.That(dict.dictionary.ContainsKey("word2"), Is.False);
         } 
 
         [Test]
         public void lookforWord() {
-            Dictionary<string, List<Match>> ocurrences = dict.lookfor("word");
+            Dictionary<string, List<Match>> ocurrences = dict.Lookfor("word");
             Assert.AreEqual(ocurrences.Count,2);
             Assert.AreEqual(ocurrences["path2"].Count,3); 
         }

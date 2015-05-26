@@ -41,9 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IGetWords.cs" />
+    <Compile Include="Contracts\IWordSplitter.cs" />
     <Compile Include="Contracts\IIndexer.cs" />
-    <Compile Include="Indexer\GetWords.cs" />
+    <Compile Include="Indexer\WordSplitter.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
     <Compile Include="Indexer\FileIndexer.cs" />
     <Compile Include="Utilities\FileIndexerUtilities.cs" />

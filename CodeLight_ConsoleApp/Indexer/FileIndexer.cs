@@ -10,15 +10,15 @@ namespace CodeLight_ConsoleApp
     public class FileIndexer : IFileIndexer
     {
         IWordFilter wordFilter;
-        IGetWords getWords;
+        IWordSplitter getWords;
 
-        public FileIndexer(IWordFilter wordFilter, IGetWords getWords)
+        public FileIndexer(IWordFilter wordFilter, IWordSplitter getWords)
         {
             this.wordFilter = wordFilter;
             this.getWords = getWords;
         }
                 
-        void indexFile(string path, ref IWordDictionary dictionary)
+        public void IndexFile(string path, ref IWordDictionary dictionary)
         {
             string[] lines = System.IO.File.ReadAllLines(path);
             int lineNumber = 1;
@@ -31,10 +31,10 @@ namespace CodeLight_ConsoleApp
         
         internal void IndexLine(string line, int LineNumber, string path, ref IWordDictionary dictionary)
         {
-            Dictionary<string,int> words = getWords.getWords(line);            
+            Dictionary<string,int> words = getWords.SplitIntoWords(line);           
             foreach(var word in words){
                 if (wordFilter.ShouldKeep(word.Key))                
-                    dictionary.addItem(word.Key, path, new Match(LineNumber, word.Value));
+                    dictionary.AddOccurrence(word.Key, path, new Match(LineNumber, word.Value));
             }
         }      
 

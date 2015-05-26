@@ -11,32 +11,32 @@ namespace Test_CodeLight
     [TestFixture]
     public class GetWordsByLine
     {
-        IGetWords words;
+        IWordSplitter words;
 
         [SetUp]
         public void Setup()
         {
-            words = new GetWords();
+            words = new WordSplitter();
         }
         
         [Test]
         public void wordsByLine()
         {
-            Dictionary<string, int> wordList = words.getWords("Separa una linea en palabras...");
+            Dictionary<string, int> wordList = words.SplitIntoWords("Separa una linea en palabras...");
             Assert.AreEqual(wordList.Count, 5);
-            Assert.That(wordList.ContainsKey("linea"), Is.True);
-            Assert.That(wordList.ContainsKey("palabras..."), Is.True);
+            Assert.That(wordList.ContainsKey("linea"));
+            Assert.That(wordList.ContainsKey("palabras..."));
             Assert.That(wordList["una"] ,Is.EqualTo(8));
             Assert.That(wordList["en"], Is.EqualTo(18));
         }
         
         [Test]
         public void EmptyLine() {
-            Dictionary<string, int> wordList = words.getWords("");
+            Dictionary<string, int> wordList = words.SplitIntoWords("");
             Assert.AreEqual(wordList.Count,1);
             Assert.That(wordList.ContainsKey(""));
             Assert.AreEqual(wordList[""], 1);
         } 
-
+        
     }
 }
