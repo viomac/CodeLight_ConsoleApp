@@ -50,12 +50,11 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DictionaryMethods.cs" />
     <Compile Include="FileIndexerMethods.cs" />
-    <Compile Include="FileWatcher.cs" />
     <Compile Include="Filter.cs" />
     <Compile Include="GetWordsByLine.cs" />
     <Compile Include="DirectoryIndexer.cs" />
+    <Compile Include="DictionaryMethods.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -63,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CodeLight_ConsoleApp\CodeLight_ConsoleApp.csproj">
-      <Project>{4ebb5c89-8ffb-441b-9d4d-01e141c04e0c}</Project>
+      <Project>{4EBB5C89-8FFB-441B-9D4D-01E141C04E0C}</Project>
       <Name>CodeLight_ConsoleApp</Name>
     </ProjectReference>
   </ItemGroup>

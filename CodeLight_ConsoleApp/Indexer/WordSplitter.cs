@@ -3,33 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace CodeLight_ConsoleApp
 {
     public class WordSplitter :IWordSplitter
     {
-        Dictionary<string, int> wordColumn;
-        Dictionary<string, List<Match>> wordMatch;
-            
-        public WordSplitter() { 
-            this.wordColumn = new Dictionary<string,int>();
-            this.wordMatch = new Dictionary<string, List<Match>>();
-        } 
-
-        public Dictionary<string, int> SplitIntoWords(string line) 
+        public Dictionary<string, List<int>> SplitIntoWords(string line) 
         {            
-            int begin = 0, end = 0;
-            end = line.IndexOf(' ', begin);
-            while (end != -1 )
-            {
-                wordColumn.Add(line.Substring(begin, end - begin), begin + 1);
-                begin = end + 1;
-                end = line.IndexOf(' ', begin);
-            }
-            end = line.Length;
-            wordColumn.Add(line.Substring(begin, end - begin), begin + 1);
+			var wordColumn = new Dictionary<string, List<int>>();
+			string[] words = SplitWords (line);
+			int column=0, begin=0;
+
+			if( words.Length != 0){
+				for (int i = 0; i < words.Length; i++) 
+				{
+					column = line.IndexOf (words[i], begin);
+					wordColumn.AddItem(words[i],column+1);
+					begin = column + words [i].Length;
+				}
+			}
             return wordColumn;
         }
+
+		string[] SplitWords(string s)
+		{
+			string[] words = Regex.Split(s, @"\W+");
+			List<string> wordsWithoutNulls = words.ToList();
+			wordsWithoutNulls.Remove ("");
+			return wordsWithoutNulls.ToArray();
+		}
         
     }
 }

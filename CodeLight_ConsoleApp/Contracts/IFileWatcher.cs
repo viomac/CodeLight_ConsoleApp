@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CodeLight_ConsoleApp
 {
-    public interface IWordSplitter
+    public interface IFileWatcher
     {
-       Dictionary<string, List<int>> SplitIntoWords(string line);
+        void Watch(string dirPath);
+        void StopWatch();
     }
 }

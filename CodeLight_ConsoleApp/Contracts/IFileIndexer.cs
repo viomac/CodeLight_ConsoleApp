@@ -9,7 +9,7 @@ namespace CodeLight_ConsoleApp
     public interface IFileIndexer
     {
         void IndexFile(string path, ref IWordDictionary dictionary);
-        //void deleteFile();
-        //void updateFile();
+		//void RemoveFile(string path, ref IWordDictionary dictionary);
+		//void updateFile(string path, ref IWordDictionary dictionary);
     }
 }

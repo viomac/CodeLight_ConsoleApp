@@ -1,3 +1,4 @@
-Dictionary. Fast lookups are critical. Dictionaries provide fast lookups,
+Dictionary. Fast lookups are critical. 
+Dictionaries provide fast lookups,
 based on keys, to get values. With them, we use keys and values of any type, 
 including int and string.

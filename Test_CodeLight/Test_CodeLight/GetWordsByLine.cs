@@ -11,32 +11,34 @@ namespace Test_CodeLight
     [TestFixture]
     public class GetWordsByLine
     {
-        IWordSplitter words;
+		IWordSplitter splitter;
 
         [SetUp]
         public void Setup()
         {
-            words = new WordSplitter();
+            splitter = new WordSplitter();
         }
-        
-        [Test]
-        public void wordsByLine()
-        {
-            Dictionary<string, int> wordList = words.SplitIntoWords("Separa una linea en palabras...");
-            Assert.AreEqual(wordList.Count, 5);
-            Assert.That(wordList.ContainsKey("linea"));
-            Assert.That(wordList.ContainsKey("palabras..."));
-            Assert.That(wordList["una"] ,Is.EqualTo(8));
-            Assert.That(wordList["en"], Is.EqualTo(18));
-        }
-        
+                
         [Test]
         public void EmptyLine() {
-            Dictionary<string, int> wordList = words.SplitIntoWords("");
-            Assert.AreEqual(wordList.Count,1);
-            Assert.That(wordList.ContainsKey(""));
-            Assert.AreEqual(wordList[""], 1);
+			Dictionary<string, List<int>> wordList = splitter.SplitIntoWords("");
+			Assert.AreEqual(wordList.Count,0);
+			Assert.That(wordList.ContainsKey(""),Is.False);
         } 
+
+		[Test]
+		public void wordsByLine(){
+			string line = "This is a simple... function() , (   ) {  } array[] example, simple;,,   SimpleExample  ,  ";
+			Dictionary<string, List<int>> wordList = splitter.SplitIntoWords(line);
+			Assert.AreEqual (wordList.Count,8);
+			Assert.That (wordList.ContainsKey ("function"));
+			Assert.That (wordList.ContainsKey ("array"));
+			Assert.That (wordList.ContainsKey (""), Is.False);
+			Assert.AreEqual (wordList["simple"].Count, 2);
+			Assert.AreEqual (wordList["simple"], new List<int>{11,62});
+			Assert.AreEqual (wordList["This"], new List<int>{1});
+
+		}
         
     }
 }

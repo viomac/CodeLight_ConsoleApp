@@ -31,7 +31,17 @@ namespace Test_CodeLight
         {
             string path = @"..\..\..\TestFiles\Dictionary.txt";
             indexer.IndexFile(path, ref dict);
-            Assert.AreEqual(dict.dictionary.Count, 29); 
+            Assert.AreEqual(dict.dictionary.Count, 24);
+			Assert.AreEqual (dict.dictionary["lookups"][path][1].Count,1);
+
+			Dictionary<string, Dictionary<int, List<int>>> ocurrences = dict.Lookfor ("keys");
+			Assert.That (ocurrences.ContainsKey (path));
+			Assert.AreEqual (ocurrences[path][3], new List<int>(){10,49});
+
+			ocurrences = dict.Lookfor ("lookups");
+			Assert.AreEqual (ocurrences[path].Count,2);
+			Assert.AreEqual (ocurrences[path][1], new List<int>(){18});
+			Assert.AreEqual (ocurrences[path][2], new List<int>(){27});
         }
 
 

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Indexer\FileWatcher.cs" />
+    <Compile Include="Contracts\IFileWatcher.cs" />
     <Compile Include="Contracts\IWordSplitter.cs" />
     <Compile Include="Contracts\IIndexer.cs" />
     <Compile Include="Indexer\WordSplitter.cs" />
